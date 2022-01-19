@@ -23,4 +23,4 @@ You can download all .src files using the **Code -> Download ZIP** button.
 
 &nbsp;
 
-- #### Many thanks to the previous author of VocaDB.src **PBX_g33k** from [mp3tag forums](https://community.mp3tag.de/t/ws-vocadb-net/17192).
+- #### Many thanks to the author of VocaDB.src **PBX_g33k** from [mp3tag forums](https://community.mp3tag.de/t/ws-vocadb-net/17192).
