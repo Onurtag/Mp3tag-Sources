@@ -7,6 +7,7 @@ You can download all .src files using the **Code -> Download ZIP** button.
 
 ## VocaDB Sources  
 
+
 - #### VocaDB#&Romaji Tags.src:   
   - Updated version of the old VocaDB.src source.   
   - All names, titles and lyrics will be in Romaji if they exist.   
@@ -20,3 +21,6 @@ You can download all .src files using the **Code -> Download ZIP** button.
   - All names and titles will all be in the original language of the song.  
   - lyrics will be in the original language (usually Japanese)  
 
+&nbsp;
+
+- #### Many thanks to the previous author of VocaDB.src **PBX_g33k** from [mp3tag forums](https://community.mp3tag.de/t/ws-vocadb-net/17192).
