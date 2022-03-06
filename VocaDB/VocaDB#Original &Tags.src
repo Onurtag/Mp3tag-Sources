@@ -15,6 +15,9 @@
 # - All names and titles will all be in the original language of the song.
 # - lyrics will be in the original language
 #
+# [2022-01-19] v1.21
+# Add month and day to year tag
+# 
 #
 # ###################################################################
 
@@ -145,6 +148,12 @@ json_select_object "items"
 	outputto "YEAR"
 	json_select_object "releaseDate"
 		json_select "year"
+		sayrest
+		say "."
+		json_select "month"
+		sayrest
+		say "."
+		json_select "day"
 		sayrest
 	json_unselect_object
 
