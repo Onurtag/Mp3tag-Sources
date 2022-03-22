@@ -172,7 +172,8 @@ json_select_object "items"
 		# outputto "TRACKS"
 		# json_select "name"
 		# sayrest
-		# say "|"
+		# # # Don't say | here because we do it after (Instrumental)
+		# # say "|"
 
 		json_select_object "song"
 			# VOCADB_TRACK_ID
@@ -189,6 +190,14 @@ json_select_object "items"
 			# outputto "Artist"
 			# json_select "artistString"
 			# sayrest
+			# say "|"
+
+			# # Append " (Instrumental)" to the title of instrumental tracks
+			# outputto "TRACKS"
+			# json_select "songType"
+			# if "Instrumental"
+			# 	say " (Instrumental)"
+			# endif
 			# say "|"
 
 			# # Default Title (JP) into JAPANESETITLE tag
