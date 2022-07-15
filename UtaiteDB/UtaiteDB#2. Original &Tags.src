@@ -2,6 +2,10 @@
 #
 # UtaiteDB version of "Vocadb Original Tags.src"
 #
+# This file should be stored in your tag sources sources directory
+# %APPDATA%\Mp3tag\data\sources
+# and requires Mp3tag v2.64 or above.
+#
 # ###################################################################
 
 [Name]=UtaiteDB

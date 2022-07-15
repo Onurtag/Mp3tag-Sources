@@ -1,83 +1,20 @@
 # ###################################################################
+# 
+# TouhouDB version of "VocaDB Album ID Romaji Tags.src"
 #
-# UtaiteDB version of "Vocadb Romaji Tags.src"
+# This file should be stored in your tag sources sources directory
+# %APPDATA%\Mp3tag\data\sources
+# and requires Mp3tag v2.64 or above.
 #
 # ###################################################################
 
-[Name]=UtaiteDB
-[BasedOn]=UtaiteDB.net
-[IndexUrl]=https://UtaiteDB.net/api/albums?fields=AdditionalNames,Tags,Tracks,Names,MainPicture&nameMatchMode=Auto&maxResults=50&preferAccurateMatches=true&getTotalCount=true&lang=Romaji&query=%s
-[AlbumUrl]=https://UtaiteDB.net/api/albums/
+[Name]=TouhouDb
+[BasedOn]=touhoudb.com
+[AlbumUrl]=https://touhoudb.com/api/albums/%s?fields=AdditionalNames,Tags,Tracks,Names,MainPicture&lang=Romaji
 [WordSeparator]=%20
-[IndexFormat]=%Artist%|%Album%|%Release_Date%|%Catalog_Number%|%_preview%|%_url%|%tracks%
-[SearchBy]=%album%
+[SearchBy]=Enter Album ID||%TOUHOUDB_ID%||%s
 [UserAgent]=1
 [Encoding]=url-utf-8
-
-[ParserScriptIndex]=...
-# ###################################################################
-#					I  N  D  E  X
-# ###################################################################
-
-# Debug "on" "D:\\KeepThisEmpty\\UTAITEDB_romaji_DEBUG.json" "5"
-# DebugWriteInput "D:\\KeepThisEmpty\\UTAITEDB_romaji.json"
-
-json "ON"
-
-json_select "totalCount"
-
-ifnot "0"
-	json_foreach "items"
-		
-		# Artist
-		json_select "artistString"
-		#sayregexp ".+?(?= -.*)"
-		sayrest
-		say "|" 
-
-		# Album
-		json_select "defaultName"
-		#sayregexp "(?<= - ).*"
-		sayrest
-		say "|"
-
-		# ReleaseDate
-		json_select_object "releaseDate"
-			json_select "formatted"
-			sayrest
-			say "|"
-		json_unselect_object
-
-		# Catalog_Number
-		json_select "catalogNumber"
-		sayrest
-		say "|"
-
-
-		# Preview
-		say "https://www.UtaiteDB.net/Al/"
-		json_select "id"
-		sayrest
-		say "|"
-
-		# URL
-		json_select "id"
-		sayrest
-		say "?fields=Tracks,Names&lang=Romaji&songFields=Lyrics"
-		say "|"
-
-		# Tracks
-		json_foreach "tracks"
-			set "t_tracks"
-			json_select "trackNumber"
-			outputto "t_tracks"
-		json_foreach_end
-		outputto "Output"
-		sayrest
-		saynewline
-
-	json_foreach_end
-endif
 
 [ParserScriptAlbum]=...
 # ###################################################################
@@ -85,8 +22,8 @@ endif
 # ###################################################################
 json "ON"
 
-# Debug "on" "D:\\KeepThisEmpty\\UTAITEDB_romaji_single_DEBUG.json" "5"
-# DebugWriteInput "D:\\KeepThisEmpty\\UTAITEDB_romaji_single.json"
+# Debug "on" "D:\\KeepThisEmpty\\TOUHOUDB_romaji_single_DEBUG.json" "5"
+# DebugWriteInput "D:\\KeepThisEmpty\\TOUHOUDB_romaji_single.json"
 
 json_select_object "items"
 
@@ -100,15 +37,15 @@ json_select_object "items"
 	json_select "defaultName"
 	sayrest
 
-	# UTAITEDB_ID
-	outputto "UTAITEDB_ID"
+	# TOUHOUDB_ID
+	outputto "TOUHOUDB_ID"
 	json_select "id"
 	sayrest
 
 	# Coverurl
 	outputto "coverurl"
 	json_select "id"
-	say "https://UtaiteDB.net/Album/CoverPicture/"
+	say "https://touhoudb.com/Album/CoverPicture/"
 	sayrest
 
 	# Catalog Number
@@ -173,8 +110,8 @@ json_select_object "items"
 		# say "|"
 
 		json_select_object "song"
-			# UTAITEDB_TRACK_ID
-			outputto "UTAITEDB_TRACK_ID"
+			# TOUHOUDB_TRACK_ID
+			outputto "TOUHOUDB_TRACK_ID"
 			json_select "id"
 			sayrest
 			say "|"
@@ -225,11 +162,11 @@ json_select_object "items"
 	set "tmp_join"
 
 	###
-	# UtaiteDB specific tags
+	# TouhouDb specific tags
 	###
 
 	# Release event
-	outputto "UTAITEDB_RELEASE_EVENT"
+	outputto "TOUHOUDB_RELEASE_EVENT"
 	json_select "releaseEvent"
 	sayrest
 json_unselect_object
