@@ -8,19 +8,27 @@ You can download all .src files using the **Code -> Download ZIP** button.
 ## VocaDB Sources  
 
 
-- #### VocaDB#&Romaji Tags.src:   
+- #### VocaDB Romaji Tags.src:   
   - Updated version of the old VocaDB.src source.   
   - All names, titles and lyrics will be in Romaji if they exist.   
   - JAPANESETITLE and JAPANESEALBUM tags will be added to each song.  
   - Appends " (Instrumental)" to instrumental track names
 
-- #### VocaDB#Original &Tags.src:  
+- #### VocaDB Original &Tags.src:  
   Created VocaDB#Original &Tags.src from VocaDB.src v1.13.  
   
   Differences between VocaDB#Romaji Tags.src: 
   - Album search shows Default (usually Japanese) names  
   - All names and titles will all be in the original language of the song.  
   - lyrics will be in the original language (usually Japanese)  
+
+- #### VocaDB Album ID Romaji Tags.src:  
+  - Search using VocaDB Album ID (album number on the URL)  
+
+- #### VocaDB Album ID Original Tags.src:  
+  - Search using VocaDB Album ID (album number on the URL)  
+
+
 
 &nbsp;
 
