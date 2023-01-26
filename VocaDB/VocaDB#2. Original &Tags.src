@@ -21,6 +21,7 @@
 # [2022-03-23] v1.22
 # Now adds " (Instrumental)" to Instrumental song titles.
 # 
+# (further updates will be listed on the git commit log: https://github.com/Onurtag/Mp3tag-Sources )
 #
 # ###################################################################
 
@@ -39,10 +40,13 @@
 #					I  N  D  E  X
 # ###################################################################
 
-# Debug "on" "D:\\KeepThisEmpty\\vocadb_orig_DEBUG.json" "5"
+# Debug "on" "D:\\KeepThisEmpty\\vocadb_orig_DEBUG.json"
 # DebugWriteInput "D:\\KeepThisEmpty\\vocadb_orig.json"
 
-json "ON"
+# replace problematic characters for Mp3tag
+replace "|" "$verticalBar()"
+# use "current" json (applies replacements above)
+json "ON" "current"
 
 json_select "totalCount"
 
@@ -103,10 +107,14 @@ endif
 # ###################################################################
 #					A  L  B  U  M
 # ###################################################################
-json "ON"
 
-# Debug "on" "D:\\KeepThisEmpty\\vocadb_orig_single_DEBUG.json" "5"
+# Debug "on" "D:\\KeepThisEmpty\\vocadb_orig_single_DEBUG.json"
 # DebugWriteInput "D:\\KeepThisEmpty\\vocadb_orig_single.json"
+
+# replace problematic characters for Mp3tag
+replace "|" "$verticalBar()"
+# use "current" json (applies replacements above)
+json "ON" "current"
 
 json_select_object "items"
 

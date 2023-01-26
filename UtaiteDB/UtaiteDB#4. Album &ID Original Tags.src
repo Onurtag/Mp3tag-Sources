@@ -20,10 +20,14 @@
 # ###################################################################
 #					A  L  B  U  M
 # ###################################################################
-json "ON"
 
-# Debug "on" "D:\\KeepThisEmpty\\UTAITEDB_orig_single_DEBUG.json" "5"
+# Debug "on" "D:\\KeepThisEmpty\\UTAITEDB_orig_single_DEBUG.json"
 # DebugWriteInput "D:\\KeepThisEmpty\\UTAITEDB_orig_single.json"
+
+# replace problematic characters for Mp3tag
+replace "|" "$verticalBar()"
+# use "current" json (applies replacements above)
+json "ON" "current"
 
 json_select_object "items"
 
