@@ -1,3 +1,6 @@
+
+If anything is broken please leave feedback either here or in the mp3tag forums; or send a pull request if you can.  
+
 ## Installation  
 Requires Mp3tag v2.64 or above.  
 .src files should be directly in your tag sources directory: **%APPDATA%\Mp3tag\data\sources**  
@@ -27,6 +30,12 @@ You can download all .src files using the **Code -> Download ZIP** button.
 
 - #### VocaDB Album ID Original Tags.src:  
   - Search using VocaDB Album ID (album number on the URL)  
+
+- #### VocaDB Song ID Romaji Tags.src:  
+  - Search using VocaDB Song ID (song number on the URL)  
+
+- #### VocaDB Song ID Original Tags.src:  
+  - Search using VocaDB Song ID (song number on the URL)  
 
 
 

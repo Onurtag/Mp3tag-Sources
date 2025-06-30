@@ -1,0 +1,110 @@
+# ###################################################################
+# Mp3tag Tag Source for TouhouDB
+# Romaji tags source
+#
+# Search using SONG ID
+#
+# This file should be stored in your tag sources sources directory
+# %APPDATA%\Mp3tag\data\sources
+# and requires Mp3tag v2.64 or above.
+#
+# ###################################################################
+
+[Name]=TouhouDb
+[BasedOn]=touhoudb.com
+[AlbumUrl]=https://touhoudb.com/api/songs/%s?fields=AdditionalNames,Lyrics,MainPicture&lang=Romaji
+[WordSeparator]=%20
+[SearchBy]=Enter Song ID||%TOUHOUDB_TRACK_ID%||%s
+[UserAgent]=1
+[Encoding]=url-utf-8
+
+[ParserScriptAlbum]=...
+# ###################################################################
+#					S  O  N  G
+# ###################################################################
+
+#Debug "on" "D:\\KeepThisEmpty\\touhoudb_romaji_songid_DEBUG.json"
+#DebugWriteInput "D:\\KeepThisEmpty\\touhoudb_romaji_songid.json"
+
+# replace problematic characters for Mp3tag
+replace "|" "$verticalBar()"
+# use "current" json (applies replacements above)
+json "ON" "current"
+
+# For song ID queries, the API returns a single song object directly, not wrapped in "items"
+# Extract the song data directly from the root object
+
+	# Song Title
+	outputto "TITLE"
+	json_select "name"
+	sayrest
+
+	# Default Song Name (JP) into JAPANESETITLE tag
+	outputto "JAPANESETITLE"
+	json_select "defaultName"
+	sayrest
+
+	# TOUHOUDB_TRACK_ID
+	outputto "TOUHOUDB_TRACK_ID"
+	json_select "id"
+	sayrest
+
+	# Song Length
+	outputto "_LENGTH"
+	json_select "lengthSeconds"
+	sayrest
+
+	# Artist
+	outputto "ARTIST"
+	json_select "artistString"
+	sayrest
+
+	# Append " (Instrumental)" to the title of instrumental tracks
+	outputto "TITLE"
+	json_select "songType"
+	if "Instrumental"
+		say " (Instrumental)"
+	endif
+
+	# Song Type
+	outputto "TOUHOUDB_TRACK_TYPE"
+	json_select "songType"
+	sayrest
+
+	# Romanized Lyrics into UNSYNCEDLYRICS tag
+	#START lyrics block
+	outputto "UNSYNCEDLYRICS"
+	json_foreach "lyrics"
+		ifnot "0"
+			#parse lyric types for translationType: "Romanized"
+			json_select "translationType"
+			if "Romanized"
+				json_select "value"
+				sayrest
+			endif
+		endif
+	json_foreach_end
+	#END lyrics block
+
+	# Cover art from main picture
+	outputto "coverurl"
+	json_select_object "mainPicture"
+		json_select "urlOriginal"
+		sayrest
+	json_unselect_object
+
+	# Dates
+	outputto "TOUHOUDB_TRACK_PUBLISHDATE"
+	json_select "publishDate"
+	sayrest
+
+	outputto "TOUHOUDB_TRACK_CREATEDATE"
+	json_select "createDate"
+	sayrest
+
+	# Extract year from publishDate (e.g., "2024-01-01" -> "2024")
+	outputto "YEAR"
+	json_select "publishDate"
+	RegexpReplace "^(\d{4})-.*" "$1"
+	sayrest
+
